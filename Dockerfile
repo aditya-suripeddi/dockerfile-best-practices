@@ -1,7 +1,7 @@
-# Line buddies: apt-get update & install in same RUN
+# Remove unnecessary dependencies
 FROM debian
 RUN apt-get update \
-    && apt-get -y install \
-    openjdk-11-jdk ssh emacs
+    && apt-get -y install --no-install-recommends \
+    openjdk-11-jdk
 COPY target/app.jar /app/
 CMD ["java", "-jar", "/app/app.jar" ]
