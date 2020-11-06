@@ -1,21 +1,22 @@
-# Remove Unnecessary dependencies
+# Remove Package Manager Cache
 
-Remove unnecessary dependencies and do not install debugging tools. If needed debugging tools
-can always be installed later. Certain package managers such as apt, automatically install 
-packages that are recommended by the user-specified package, unnecessarily increasing the
-footprint. Apt has the –no-install-recommends flag which ensures that dependencies that were
-not actually needed are not installed. If they are needed, add them explicitly.
+Package managers maintain their own cache which may end up in the image. One way to deal with it is
+to remove the cache in the same RUN instruction that installed packages. Removing it in another RUN
+instruction would not reduce the image size.
+
+There are further ways to reduce image size such as multi-stage builds which will be covered at the
+end of this blog post. The next set of best practices will look at how we can optimize for 
+maintainability, security, and repeatability of the Dockerfile.
 
 
 ```diff
 FROM debian
 # Install required system packages
-- RUN apt-get update \
--     && apt-get -y install \
--     openjdk-11-jdk ssh emacs
-+ RUN apt-get update \
-+     && apt-get -y install --no-install-recommends \
-+     openjdk-11-jdk
+RUN apt-get update \
+     && apt-get -y install --no-install-recommends \
+-     openjdk-11-jdk
++    openjdk-11-jdk \
++    && rm -rf /var/lib/apt/lists/*
 # Copy required jar file 
 COPY target/app.jar /app
 # Run jar file
