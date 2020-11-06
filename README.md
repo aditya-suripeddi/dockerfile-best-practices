@@ -38,7 +38,7 @@
 ## Reproducibility:
 
 
-    1. Line buddies: apt-get update & install in singe RUN statement
+    1. Line buddies: apt-get update & install in singe RUN statement?
 
     2. Build-from-source in a consistent environment
 
@@ -84,7 +84,7 @@ Improving Incremental build time
 
 [2-more-specific-copy-to-limit-cache-busts](https://github.com/aditya-suripeddi/dockerfile-best-practices/tree/2-more-specific-copy-to-limit-cache-busts)
 
-Reproducibility
+Reproducibility?
 
 [3-line-buddies-apt-update-install](https://github.com/aditya-suripeddi/dockerfile-best-practices/tree/3-line-buddies-apt-update-install)
 
