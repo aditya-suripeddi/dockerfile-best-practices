@@ -1,21 +1,16 @@
 # Use more specific tags
 
-The "latest" tag is a rolling tag. Be specific, to prevent unexpected changes in your base image.
-
-
-Do not use the latest tag. It has the convenience of always being available for official images 
-on Docker Hub but there can be breaking changes over time. Depending on how far apart in time you
-rebuild the Dockerfile without cache, you may have failing builds.
-
-
-Instead, use more specific tags for your base images. In this case, we’re using openjdk. There are a lot
-more tags available so check out the Docker Hub documentation for that image which lists all the existing variants.
+Some of those tags have minimal flavors which means they are even smaller images. The slim variant is based 
+on a stripped down Debian, while the alpine variant is based on the even smaller Alpine Linux distribution 
+image. A notable difference is that debian still uses GNU libc while alpine uses musl libc which, although 
+much smaller, may in some cases cause compatibility issues. In the case of openjdk, the jre flavor only contains
+the java runtime, not the sdk; this also drastically reduces the image size.
 
 
 
 ```diff
--FROM openjdk:latest
-+FROM openjdk:8
+-FROM openjdk:8
++FROM openjdk:8-jre-alpine
 # Copy required jar file 
 COPY target/app.jar /app
 # Run jar file
@@ -24,12 +19,43 @@ CMD ["java", "-jar", "/app/app.jar"]
 
 ## Commands to run 
 
+  To see the difference in image size between different flavors: 
+```
+  $ docker pull openjdk:8
+    ...
+    ...
+  $ docker pull openjdk:8-jre
+    ...
+    ...
+  $ docker pull openjdk:8-jre-slim
+    ...
+    ...
+  $ docker pull openjdk:8-jre-alpine
+    ...
+    ..,
+  $ docker images openjdk
+    # output observed:
+    # note the SIZE for each flavor
+
+       REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+
+       openjdk             8-jre-slim          21a3c44ee1bb        10 days ago         187MB
+       openjdk             8-jre               3baa5c4641ad        10 days ago         268MB
+       openjdk             8                   3edb5f36304e        10 days ago         514MB
+       openjdk             8-jre-alpine        f7a292bbb70c        18 months ago       84.9MB
+ 
+   # just using a different base image reduced the image size by 
+     540 MB
+```  
+  
+ To run the project in a docker container: 
 ```
    $ docker build -t use-more-specific-tags .
       ...
       ...
    $ docker run use-more-specific-tags
 ```
+
 
 
 ## Reference: 
