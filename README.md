@@ -13,8 +13,8 @@ FROM debian
 - RUN apt-get update
 - RUN apt-get -y install openjdk-11-jdk ssh emacs
 + RUN apt-get update \
-      && apt-get -y install \
-      openjdk-11-jdk ssh emacs
++     && apt-get -y install \
++      openjdk-11-jdk ssh emacs
 # Copy required jar file 
 COPY target/app.jar /app
 # Run jar file
