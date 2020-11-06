@@ -12,6 +12,7 @@
 
 
     <build>
+        <finalName>app</finalName>
         <plugins>
 
             <plugin>
@@ -21,6 +22,10 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+
+            <!-- maven-assembly-plugin used to make fat jar
+                 but reference source requires the
+                 maven-shade-plugin below:
 
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -37,6 +42,33 @@
                     <appendAssemblyId>false</appendAssemblyId>
                 </configuration>
             </plugin>
+            -->
+
+            <!-- to package the java project into one
+                 fat jar with dependencies -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.3</version>
+                <executions>
+                    <!-- Run shade goal on package phase -->
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <!-- add Main-Class to manifest file -->
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>org.leetcode.TwoSum</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
 
         </plugins>
     </build>
