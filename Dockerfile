@@ -1,4 +1,7 @@
-# look for minimal flavors - parent image flavours with low memory footprint
-FROM openjdk:8-jre-alpine
-COPY target/app.jar /app/
-CMD ["java", "-jar", "/app/app.jar" ]
+# Build from source in a consistent environment
+FROM maven:3.6.1-jdk-8-alpine
+WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn -e -B package
+CMD ["java", "-jar", "/app/target/app.jar" ]
