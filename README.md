@@ -1,31 +1,23 @@
-# Order matters for caching 
+# More specific COPY to limit cache busts
 
-In a development cycle, when building a Docker image, making code changes, then rebuilding, it 
-is important to leverage caching. Caching helps to avoid running build steps again when they don’t need to.
-
-
-However, the order of the build steps (Dockerfile instructions) matters, because when a step’s cache
-is invalidated by changing files or modifying lines in the Dockerfile, subsequent steps of their 
-cache will break. Order your steps from least to most frequently changing steps to optimize caching.
-
+Only copy what’s needed. If possible, avoid “COPY  .” When copying files into your image, make sure 
+you are very specific about what you want to copy. Any changes to the files being copied will break
+the cache. In the example above, only the pre-built jar application is needed inside the image, so 
+only copy that. That way unrelated file changes will not affect the cache.
 
 ```diff
 FROM debian
-- # Copy application files
-- COPY . /app
 # Install required system packages
 RUN apt-get update
 RUN apt-get -y install openjdk-11-jdk ssh emacs
-+ # Copy application files
-+ COPY . /app
+- # Copy application files
+- COPY . /app
++ # Copy required jar file 
++ COPY target/app.jar /app
 # Run jar file
-CMD ["java", "-jar", "/app/target/app.jar"]   
+- CMD ["java", "-jar", "/app/target/app.jar"]   
++ CMD ["java", "-jar", "/app/app.jar"]   
 ```
-
-Now even if there are some changes made in application files / project files 
-docker build will take less time as RUN instructions are cached and reused
-while building
-
 
 
 ## Reference: 
