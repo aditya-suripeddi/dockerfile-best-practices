@@ -1,22 +1,25 @@
-# Remove Package Manager Cache
+# Use official images where possible
 
-Package managers maintain their own cache which may end up in the image. One way to deal with it is
-to remove the cache in the same RUN instruction that installed packages. Removing it in another RUN
-instruction would not reduce the image size.
-
-There are further ways to reduce image size such as multi-stage builds which will be covered at the
-end of this blog post. The next set of best practices will look at how we can optimize for 
-maintainability, security, and repeatability of the Dockerfile.
+    1. Reduce time spend on maintenance 
+       (frequently updated with fixes)
+    2. Reduce size (shared layers between images)
+    3. Pre-configured for container use
+    4. Built by smart people 
+    
+    
+Official images can save a lot of time spent on maintenance because all the
+installation steps are done and best practices are applied. If you have multiple
+projects, they can share those layers because they use exactly the same base image.
 
 
 ```diff
-FROM debian
-# Install required system packages
-RUN apt-get update \
-     && apt-get -y install --no-install-recommends \
--     openjdk-11-jdk
-+    openjdk-11-jdk \
-+    && rm -rf /var/lib/apt/lists/*
+-FROM debian
+-# Install required system packages
+-RUN apt-get update \
+-     && apt-get -y install --no-install-recommends \
+-    openjdk-11-jdk \
+-    && rm -rf /var/lib/apt/lists/*
++FROM openjdk
 # Copy required jar file 
 COPY target/app.jar /app
 # Run jar file
