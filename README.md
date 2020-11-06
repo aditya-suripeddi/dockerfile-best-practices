@@ -84,7 +84,7 @@ Reproducibility
 
 Improving Incremental build time / Leverage Build Cache?
 
-[10-fetch-dependencies-in-a-separate-step]((https://github.com/aditya-suripeddi/dockerfile-best-practices/tree/9-build-from-source-in-consistent-environment))
+[10-fetch-dependencies-in-a-separate-step](https://github.com/aditya-suripeddi/dockerfile-best-practices/tree/10-fetch-dependencies-in-a-separate-step)
 
 
 ## References:
