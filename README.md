@@ -1,4 +1,4 @@
-# Remove Package Manager Cache
+# Remove Package Manager Cache | Reduce Image Size
 
 Package managers maintain their own cache which may end up in the image. One way to deal with it is
 to remove the cache in the same RUN instruction that installed packages. Removing it in another RUN
