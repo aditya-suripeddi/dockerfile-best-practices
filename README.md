@@ -1,36 +1,18 @@
-# Build from source in consistent environment |  Reproducibility
+# Fetch dependencies in a separate step | Improving Incremental build time
 
-Make the Dockerfile your blueprint:
+By again *thinking in terms of cacheable units of execution and identifying cacheable units of execution*, we can
+decide that fetching dependencies is a separate cacheable unit that only needs to depend on changes to pom.xml and
+not the source code. The RUN step between the two COPY steps tells Maven to only fetch the dependencies.
 
-     1. It describes the build environment
-     
-     2. Correct versions of build tools installed
-     
-     3. Prevent inconsistencies between environments
-     
-     4. There may be system dependencies
-     
-     5. The "source of truth" is the source code, not the build artifact
-     
-
-You should start by identifying all that’s needed to build your application. Our simple Java application
-requires Maven and the JDK, so let’s base our Dockerfile off of a specific minimal official maven image
-from Docker Hub, that includes the JDK. If you needed to install more dependencies, you could do so in a RUN step.
-
-The pom.xml and src folders are copied in as they are needed for the final RUN step that produces the
-app.jar application with mvn package. (The -e flag is to show errors and -B to run in non-interactive aka “batch” mode).
-
-We solved the inconsistent environment problem, but introduced another one: every time the code is changed, all the
-dependencies described in pom.xml are fetched. Hence the next tip.
+There is one more problem that got introduced by building in consistent environments: our image is way
+bigger than before because it includes all the build-time dependencies that are not needed at runtime.
 
 
 ```diff
--FROM openjdk:8-jre-alpine
-+FROM maven:3.6.1-jdk-8-alpine
-+WORKDIR /app
--# Copy required jar file
--COPY target/app.jar /app
+FROM maven:3.6.1-jdk-8-alpine
+WORKDIR /app
 COPY pom.xml .
++ RUN mvn -e -B  dependency:resolve
 COPY src ./src
 RUN mvn -e -B package
 # Run jar file
@@ -56,17 +38,17 @@ CMD ["java", "-jar", "/app/target/app.jar"]
  
     Checkout to branch 
   
-    $git checkout 9-build-from-source-in-consistent-environment
+    $git checkout 10-fetch-dependencies-in-a-separate-step
   
  
     Build the container image
  
-    $ docker build -t 9-build-from-source-in-consistent-environment . 
+    $ docker build -t 10-fetch-dependencies-in-a-separate-step . 
  
  
     Run the container
  
-    $ docker run 9-build-from-source-in-consistent-environment
+    $ docker run 10-fetch-dependencies-in-a-separate-step
  ```
 
 
@@ -99,6 +81,10 @@ Maintainability
 Reproducibility
 
 [9-build-from-source-in-consistent-environemnt](https://github.com/aditya-suripeddi/dockerfile-best-practices/tree/9-build-from-source-in-consistent-environment)
+
+Improving Incremental build time / Leverage Build Cache?
+
+[10-fetch-dependencies-in-a-separate-step]((https://github.com/aditya-suripeddi/dockerfile-best-practices/tree/9-build-from-source-in-consistent-environment))
 
 
 ## References:
