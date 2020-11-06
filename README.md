@@ -1,4 +1,4 @@
-# Following best practices while writing Dockefile will help in five areas:
+# Following best practices while writing Dockerfile will help in five areas:
 
     1. Incremental build time
     
@@ -20,9 +20,9 @@
 
 ## Reduce Image size:
 
-   1. Remove unnecessary dependencies
+     1. Remove unnecessary dependencies
      
-   2. Remove package manager cache
+     2. Remove package manager cache
 
 
 ## Maintainability:
@@ -38,23 +38,13 @@
 ## Reproducibility:
 
 
-    1. Identify cacheable units such as apt-get update & install
+    1. Line buddies: apt-get update & install in singe RUN statement
 
     2. Build-from-source in a consistent environment
 
     3. Fetch dependencies in a spearate step
 
     4. Use multi-stage builds to remove build dependencies
-
-
-
-## References:
-
-  1.  [intro-guide-to-dockerfile-best-practices](https://www.docker.com/blog/intro-guide-to-dockerfile-best-practices/)
-
-  2.  [reference-slides-of-the-blog-above](https://drive.google.com/file/d/16t_-DRTohzyVPJy6Cx8a3PxLQ-95CfYK/view)
-
-  3.  [github-dockerfile-best-practices-nodejs](https://github.com/juan131/dockerfile-best-practices)
 
 
 ## Running the java project in docker container
@@ -85,3 +75,45 @@
 
    $ docker run java-app
 ```
+
+## Links to best practices
+
+Improving Incremental build time
+
+[1-order-matters-for-caching](https://github.com/aditya-suripeddi/dockerfile-best-practices/tree/1-order-matters-for-caching) 
+
+[2-more-specific-copy-to-limit-cache-busts](https://github.com/aditya-suripeddi/dockerfile-best-practices/tree/2-more-specific-copy-to-limit-cache-busts)
+
+Reproducibility
+
+[3-line-buddies-apt-update-install](https://github.com/aditya-suripeddi/dockerfile-best-practices/tree/3-line-buddies-apt-update-install)
+
+Reduce Image Size
+
+[4-remove-unnecessary-dependencies](https://github.com/aditya-suripeddi/dockerfile-best-practices/tree/4-remove-unnecessary-dependencies)
+
+[5-remove-package-manager-cache](https://github.com/aditya-suripeddi/dockerfile-best-practices/tree/5-remove-package-manager-cache)
+
+Maintainability 
+
+[6-use-official-images](https://github.com/aditya-suripeddi/dockerfile-best-practices/tree/6-use-official-images)
+
+[7-use-more-specific-tags](https://github.com/aditya-suripeddi/dockerfile-best-practices/tree/7-user-more-specific-tags)
+
+[8-look-for-minimal-flavors](https://github.com/aditya-suripeddi/dockerfile-best-practices/tree/8-look-for-mininal-flavors)
+
+Reproducibility
+
+[9-build-from-source-in-consistent-environemnt](https://github.com/aditya-suripeddi/dockerfile-best-practices/tree/9-build-from-source-in-consistent-environment)
+
+
+## References:
+
+  1.  [intro-guide-to-dockerfile-best-practices](https://www.docker.com/blog/intro-guide-to-dockerfile-best-practices/)
+
+  2.  [reference-slides-of-the-blog-above](https://drive.google.com/file/d/16t_-DRTohzyVPJy6Cx8a3PxLQ-95CfYK/view)
+
+  3.  [github-dockerfile-best-practices-nodejs](https://github.com/juan131/dockerfile-best-practices)
+  
+  4.  [dockerfile-best-practices](https://www.youtube.com/watch?v=JofsaZ3H1qM&t=391s)
+
