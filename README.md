@@ -44,8 +44,7 @@ CMD ["java", "-jar", "/app/app.jar"]
        openjdk             8                   3edb5f36304e        10 days ago         514MB
        openjdk             8-jre-alpine        f7a292bbb70c        18 months ago       84.9MB
  
-   # just using a different base image reduced the image size by 
-     540 MB
+   # just using a different base image reduced the image size by  540 MB
 ```  
   
  To run the project in a docker container: 
