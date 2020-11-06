@@ -1,8 +1,12 @@
-# Fetch dependencies in a separate step
-FROM maven:3.6.1-jdk-8-alpine
+# Multi-stage builds to remove build dependencies
+# like maven, pip in docker image
+FROM maven:3.6.1-jdk-8-alpine AS builder
 WORKDIR /app
 COPY pom.xml .
 RUN mvn -e -B dependency:resolve
 COPY src ./src
 RUN mvn -e -B package
-CMD ["java", "-jar", "/app/target/app.jar" ]
+
+FROM openjdk:8-jre-alpine
+COPY --from=builder /app/target/app.jar /
+CMD ["java", "-jar", "/app.jar"]

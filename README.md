@@ -1,25 +1,37 @@
-# Fetch dependencies in a separate step | Improving Incremental build time
+# Multi Stage Builds to Remove Build Dependencies (like maven, pip) in docker image | Reduce Image Size
 
-By again *thinking in terms of cacheable units of execution and identifying cacheable units of execution*, we can
-decide that fetching dependencies is a separate cacheable unit that only needs to depend on changes to pom.xml and
-not the source code. The RUN step between the two COPY steps tells Maven to only fetch the dependencies.
-
-There is one more problem that got introduced by building in consistent environments: our image is way
-bigger than before because it includes all the build-time dependencies that are not needed at runtime.
-
+Multi-stage builds are recognizable by the multiple FROM statements. Each FROM starts a new stage. They can be
+named with the AS keyword which we use to name our first stage “builder” to be referenced later. It will include
+all our build dependencies in a consistent environment.
 
 ```diff
-FROM maven:3.6.1-jdk-8-alpine
+- FROM maven:3.6.1-jdk-8-alpine
++ FROM maven:3.6.1-jdk-8-alpine AS builder
 WORKDIR /app
 COPY pom.xml .
-+ RUN mvn -e -B  dependency:resolve
+RUN mvn -e -B  dependency:resolve
 COPY src ./src
 RUN mvn -e -B package
+
+FROM openjdk:8-jre-alpine
+COPY --from=builder /app/target/app.jar /
 # Run jar file
-CMD ["java", "-jar", "/app/target/app.jar"]   
+- CMD ["java", "-jar", "/app/target/app.jar"]   
++ CMD ["java", "-jar", "/app.jar"]   
 ```
 
-## Commands to run 
+The second stage is our final stage which will result in the final image. It will include the strict necessary
+for the runtime, in this case a minimal JRE (Java Runtime) based on Alpine. The intermediary builder stage will
+be cached but not present in the final image. In order to get build artifacts into our final image, use
+COPY --from=STAGE_NAME. In this case, STAGE_NAME is builder. 
+
+Multi-stage builds is the go-to solution to remove build-time dependencies.
+
+
+**We went from building bloated images inconsistently to building minimal images in a consistent environment while being cache-friendly.**
+
+
+## Commands to Run: 
 
 ```
     Install docker and run the docker daemon
@@ -38,17 +50,17 @@ CMD ["java", "-jar", "/app/target/app.jar"]
  
     Checkout to branch 
   
-    $git checkout 10-fetch-dependencies-in-a-separate-step
+    $git checkout 11-multi-stage-builds-to-remove-build-deps
   
  
     Build the container image
  
-    $ docker build -t 10-fetch-dependencies-in-a-separate-step . 
+    $ docker build -t 11-multi-stage-builds-to-remove-build-deps . 
  
  
     Run the container
  
-    $ docker run 10-fetch-dependencies-in-a-separate-step
+    $ docker run 11-multi-stage-builds-to-remove-build-deps
  ```
 
 
@@ -82,9 +94,13 @@ Reproducibility
 
 [9-build-from-source-in-consistent-environemnt](https://github.com/aditya-suripeddi/dockerfile-best-practices/tree/9-build-from-source-in-consistent-environment)
 
-Improving Incremental build time / Leverage Build Cache?
+Improving Incremental build time?
 
 [10-fetch-dependencies-in-a-separate-step](https://github.com/aditya-suripeddi/dockerfile-best-practices/tree/10-fetch-dependencies-in-a-separate-step)
+
+Reduce Image Size? [multi-stage-builds-reduce-image-size](https://blog.logrocket.com/reduce-docker-image-sizes-using-multi-stage-builds/#:~:text=Multi%2Dstage%20builds%20in%20Docker,easy%20to%20read%20and%20understand.)
+
+[11-multi-stage-builds-to-remove-build-deps](https://github.com/aditya-suripeddi/dockerfile-best-practices/tree/11-multi-stage-builds-to-remove-build-deps.git)
 
 
 ## References:
@@ -97,3 +113,4 @@ Improving Incremental build time / Leverage Build Cache?
   
   4.  [dockerfile-best-practices](https://www.youtube.com/watch?v=JofsaZ3H1qM&t=391s)
 
+  5.  [dockerdocs-dockerfile-best-practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
