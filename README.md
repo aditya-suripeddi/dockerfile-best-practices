@@ -1,4 +1,4 @@
-# Following best practices while writing Dockerfile will help in five areas:
+# Following Dockerfile best practices will help in five areas:
 
     1. Incremental build time
     
