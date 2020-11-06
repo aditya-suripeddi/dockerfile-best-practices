@@ -1,8 +1,12 @@
 # Use more specific tags
 
+The "latest" tag is a rolling tag. Be specific, to prevent unexpected changes in your base image.
+
+
 Do not use the latest tag. It has the convenience of always being available for official images 
 on Docker Hub but there can be breaking changes over time. Depending on how far apart in time you
 rebuild the Dockerfile without cache, you may have failing builds.
+
 
 Instead, use more specific tags for your base images. In this case, we’re using openjdk. There are a lot
 more tags available so check out the Docker Hub documentation for that image which lists all the existing variants.
@@ -31,6 +35,7 @@ CMD ["java", "-jar", "/app/app.jar"]
 ## Reference: 
 
 [intro-guide-to-dockerfile-best-practices](https://www.docker.com/blog/intro-guide-to-dockerfile-best-practices/)
+
 [dockerfile-best-practices](https://www.youtube.com/watch?v=JofsaZ3H1qM&t=391s)
 
 
