@@ -7,8 +7,6 @@ The application allows you to:
        3. Update / Delete a task 
 
 
-
-
 ## Setting up and running the application 
 
 ```
@@ -25,3 +23,8 @@ $ docker run -p5001:5000 task-master
 Go to https://localhost:5001 in your browser
 
 
+## References 
+
+  1. [Learning Flask for python](https://www.youtube.com/watch?v=Z1RJmh_OqeA&list=PLzk3fF6cDjlS90xhsBlH8SIN7uwpUca5x&index=45)
+
+  2. [github link for above video](https://github.com/jakerieger/FlaskIntroduction)
