@@ -4,8 +4,7 @@
 
 ## Intro 
 
-This repository shows how to write a Dockerfile for a java project and 
-walks you through writing a better Dockerfile by applying best practices
+This repository walks you through writing a better Dockerfile for a maven java project by applying best practices
 and concepts discussed in [dockerfile-best-practices](https://www.youtube.com/watch?v=JofsaZ3H1qM&t=391s)
 
 
