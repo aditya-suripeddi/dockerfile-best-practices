@@ -13,7 +13,7 @@ A better Dockerfile is written as you go from master branch to [1-order-matters-
 till you reach [11-multi-stage-builds-to-remove-build-deps](https://github.com/aditya-suripeddi/dockerfile-best-practices/tree/11-multi-stage-builds-to-remove-build-deps)
 
 
-The mater branch has python flask rest app, to show how to write Dockerfile for a python project  
+The mater branch also has a python flask rest app, to show how to write Dockerfile for a python project  
 
 
 ## Following Dockerfile best practices will help in five areas:
