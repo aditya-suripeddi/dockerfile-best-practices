@@ -1,4 +1,22 @@
-# Following Dockerfile best practices will help in five areas:
+
+# Dockerfile best practices
+
+
+## Intro 
+
+This repository shows how to write a Dockerfile for a java project and 
+walks you through writing a better Dockerfile by applying best practices
+and concepts discussed in [dockerfile-best-practices](https://www.youtube.com/watch?v=JofsaZ3H1qM&t=391s)
+
+
+A better Dockerfile is written as you go from master branch to [1-order-matters-for-caching](https://github.com/aditya-suripeddi/dockerfile-best-practices/tree/1-order-matters-for-caching) 
+till you reach [11-multi-stage-builds-to-remove-build-deps](https://github.com/aditya-suripeddi/dockerfile-best-practices/tree/11-multi-stage-builds-to-remove-build-deps)
+
+
+The mater branch has python flask rest app, to show how to write Dockerfile for a python project  
+
+
+## Following Dockerfile best practices will help in five areas:
 
     1. Incremental build time
     
@@ -127,3 +145,5 @@ Reduce Image Size? [multi-stage-builds-reduce-image-size](https://blog.logrocket
   4.  [dockerfile-best-practices](https://www.youtube.com/watch?v=JofsaZ3H1qM&t=391s)
 
   5.  [dockerdocs-dockerfile-best-practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
+
+  6. [hexops-dockerfile-best-practices](https://github.com/hexops/dockerfile)
