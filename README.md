@@ -2,17 +2,15 @@
 # Dockerfile best practices
 
 
-## Intro 
 
 This repository walks you through writing a better Dockerfile for a maven java project by applying best practices
 and concepts discussed in [dockerfile-best-practices](https://www.youtube.com/watch?v=JofsaZ3H1qM&t=391s)
 
 
-A better Dockerfile is written as you go from master branch to [1-order-matters-for-caching](https://github.com/aditya-suripeddi/dockerfile-best-practices/tree/1-order-matters-for-caching) 
-till you reach [11-multi-stage-builds-to-remove-build-deps](https://github.com/aditya-suripeddi/dockerfile-best-practices/tree/11-multi-stage-builds-to-remove-build-deps)
+A better Dockerfile is written as you go from master branch to [1-order-matters-for-caching](https://github.com/aditya-suripeddi/dockerfile-best-practices/tree/1-order-matters-for-caching) till you reach [11-multi-stage-builds-to-remove-build-deps](https://github.com/aditya-suripeddi/dockerfile-best-practices/tree/11-multi-stage-builds-to-remove-build-deps)
 
 
-The mater branch also has a python flask rest app, to show how to write Dockerfile for a python project  
+The mater branch also has a python flask rest app, to show how to write Dockerfile for a python project
 
 
 ## Following Dockerfile best practices will help in five areas:
