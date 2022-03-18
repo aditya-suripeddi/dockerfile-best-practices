@@ -10,7 +10,7 @@ and concepts discussed in [dockerfile-best-practices](https://www.youtube.com/wa
 A better Dockerfile is written as you go from master branch to [1-order-matters-for-caching](https://github.com/aditya-suripeddi/dockerfile-best-practices/tree/1-order-matters-for-caching) till you reach [11-multi-stage-builds-to-remove-build-deps](https://github.com/aditya-suripeddi/dockerfile-best-practices/tree/11-multi-stage-builds-to-remove-build-deps)
 
 
-The mater branch also has a python flask rest app, to show how to write Dockerfile for a python project
+The master branch also has a python flask rest app, to show how to write Dockerfile for a python project
 
 
 ## Following Dockerfile best practices will help in five areas:
@@ -137,7 +137,7 @@ Reduce Image Size? [multi-stage-builds-reduce-image-size](https://blog.logrocket
 
   2.  [reference-slides-of-the-blog-above](https://drive.google.com/file/d/16t_-DRTohzyVPJy6Cx8a3PxLQ-95CfYK/view)
 
-  3.  [github-dockerfile-best-practices-nodejs](https://github.com/juan131/dockerfile-best-practices): <em> the presentation format with different github branches is taken from here </em>
+  3.  [github-dockerfile-best-practices-nodejs](https://github.com/juan131/dockerfile-best-practices): <em> the presentation format with different github branches is taken from this repository </em>
   
   4.  [dockerfile-best-practices](https://www.youtube.com/watch?v=JofsaZ3H1qM&t=391s)
 
