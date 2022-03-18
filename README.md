@@ -3,14 +3,17 @@
 
 
 
-This repository walks you through writing a better Dockerfile for a maven java project by applying best practices
-and concepts discussed in [dockerfile-best-practices](https://www.youtube.com/watch?v=JofsaZ3H1qM&t=391s)
+The aim of the repository is to understand some of the best practices for writing a Dockerfile for a java maven project
+hands on as discussed in [dockerfile-best-practices](https://www.youtube.com/watch?v=JofsaZ3H1qM&t=391s)
 
 
 A better Dockerfile is written as you go from master branch to [1-order-matters-for-caching](https://github.com/aditya-suripeddi/dockerfile-best-practices/tree/1-order-matters-for-caching) till you reach [11-multi-stage-builds-to-remove-build-deps](https://github.com/aditya-suripeddi/dockerfile-best-practices/tree/11-multi-stage-builds-to-remove-build-deps)
 
 
-The master branch also has a python flask rest app, to show how to write Dockerfile for a python project
+The idea of using git branches for presenting the outcome of each applied best practice is taken from [Github-dockerfile-best-practices-nodejs](https://github.com/juan131/dockerfile-best-practices)  
+
+
+The master branch also has a python flask rest app to practice writing Dockerfile for a python project
 
 
 ## Following Dockerfile best practices will help in five areas:
@@ -133,14 +136,14 @@ Reduce Image Size? [multi-stage-builds-reduce-image-size](https://blog.logrocket
 
 ## References:
 
-  1.  [intro-guide-to-dockerfile-best-practices](https://www.docker.com/blog/intro-guide-to-dockerfile-best-practices/)
+  1.  [Intro-guide-to-dockerfile-best-practices](https://www.docker.com/blog/intro-guide-to-dockerfile-best-practices/)
 
-  2.  [reference-slides-of-the-blog-above](https://drive.google.com/file/d/16t_-DRTohzyVPJy6Cx8a3PxLQ-95CfYK/view)
+  2.  [Reference-slides-of-the-blog-above](https://drive.google.com/file/d/16t_-DRTohzyVPJy6Cx8a3PxLQ-95CfYK/view)
 
-  3.  [github-dockerfile-best-practices-nodejs](https://github.com/juan131/dockerfile-best-practices): <em> the presentation format with different github branches is taken from this repository </em>
+  3.  [Github-dockerfile-best-practices-nodejs](https://github.com/juan131/dockerfile-best-practices): <em> the presentation format with different github branches is taken from this repository </em>
   
-  4.  [dockerfile-best-practices](https://www.youtube.com/watch?v=JofsaZ3H1qM&t=391s)
+  4.  [Dockerfile-best-practices](https://www.youtube.com/watch?v=JofsaZ3H1qM&t=391s)
 
-  5.  [dockerdocs-dockerfile-best-practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
+  5.  [Dockerdocs-dockerfile-best-practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
 
-  6. [hexops-dockerfile-best-practices](https://github.com/hexops/dockerfile)
+  6. [Hexops-dockerfile-best-practices](https://github.com/hexops/dockerfile)
