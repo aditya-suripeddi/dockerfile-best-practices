@@ -137,7 +137,7 @@ Reduce Image Size? [multi-stage-builds-reduce-image-size](https://blog.logrocket
 
   2.  [reference-slides-of-the-blog-above](https://drive.google.com/file/d/16t_-DRTohzyVPJy6Cx8a3PxLQ-95CfYK/view)
 
-  3.  [github-dockerfile-best-practices-nodejs](https://github.com/juan131/dockerfile-best-practices)
+  3.  [github-dockerfile-best-practices-nodejs](https://github.com/juan131/dockerfile-best-practices): <em> the presentation format with different github branches is taken from here </em>
   
   4.  [dockerfile-best-practices](https://www.youtube.com/watch?v=JofsaZ3H1qM&t=391s)
 
